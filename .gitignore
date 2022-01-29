@@ -1,0 +1,12 @@
+/build/
+/tipettino/node_modules
+
+.Trashes/
+.DS_Store
+
+keys.php
+
+private.pem
+public.pem
+
+backend/vendor/
