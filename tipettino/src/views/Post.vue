@@ -34,8 +34,8 @@
     fetch(`/postapi/getpost?link=${link}`)
         .then(res => res.json())
         .then(res => {
-            title = res.title
-            description = res.description
+            title.value = res.title
+            description.value = res.description
             rendered.value = md.render(res.body)
         })
 </script>

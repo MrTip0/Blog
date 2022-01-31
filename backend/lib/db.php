@@ -5,7 +5,7 @@ function getDB(): mysqli
     $username = "app";
 
     // Create connection
-    $conn = new mysqli(hostname: $servername,username: $username, database: "applittle");
+    $conn = new mysqli(hostname: $servername, username: $username, database: "applittle");
     return $conn;
 }
 ?>

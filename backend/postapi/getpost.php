@@ -5,7 +5,7 @@ $db = getDB();
 
 $link = $_GET["link"];
 
-$q = $db -> query("SELECT title, description, body FROM posts WHERE link = $link");
+$q = $db -> query("SELECT title, description, body FROM posts WHERE link = '$link';");
 
 if ($q -> num_rows != 1) {
     echo '{"error":"post not found"}';

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-4">
         <p class="h1">
             Nicolò Luigi Allegris
         </p>

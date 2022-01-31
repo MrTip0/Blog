@@ -11,12 +11,12 @@
                     <input type="password" class="form-control" id="password" v-model="password">
                 </div>
                 <div class="d-grid gap-2">
-                    <input type="submit" class="btn btn-primary" value="Log in"/>
+                    <input type="submit" class="btn btn-secondary" value="Log in"/>
                     <button class="btn btn-outline-danger">Forgot password</button>
                 </div>
             </form>
         </div>
-        <div :class="'alert alert-error alert-dismissible fade' + (showerr?'show':'')" role="alert">
+        <div :class="'alert alert-error alert-dismissible fixed-bottom fade' + (showerr?'show':'')" role="alert">
             <h4 class="alert-heading">Error!</h4>
             <p>{{alertmex}}</p>
             <button type="button" class="btn-close" @click="showerr = false" aria-label="Close"></button>
@@ -51,7 +51,8 @@
             }
         })
         .catch(err => {
-            console.error(err)
+            alertmex.value = err
+            showerr.value = true
         })
     }
 </script>

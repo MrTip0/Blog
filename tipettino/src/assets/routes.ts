@@ -5,6 +5,7 @@ import AboutMe from '../views/AboutMe.vue'
 import Post from '../views/Post.vue'
 import Posts from '../views/Posts.vue'
 import Index from '../views/Index.vue'
+import AddPost from '../views/AddPost.vue'
 
 const routes = [
     { path: "/", component: Index },
@@ -13,6 +14,7 @@ const routes = [
     { path: "/post/:link", component: Post },
     { path: "/posts", component: Posts },
     { path: "/login", component: Login },
+    { path: "/addpost", component: AddPost },
 ]
 
 export default createRouter({
