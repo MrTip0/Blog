@@ -10,7 +10,7 @@ $q = $db -> query("SELECT title, description, body FROM posts WHERE link = '$lin
 if ($q -> num_rows != 1) {
     echo '{"error":"post not found"}';
 } else {
-    $row = $q -> fetch_row();
+    $row = $q -> fetch_array();
     echo json_encode(array(
         "title" => $row["title"],
         "description" => $row["description"],

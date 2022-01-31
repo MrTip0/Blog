@@ -8,15 +8,15 @@ $username = $token -> username;
 
 $db = getDB();
 
-$user = $db -> query("SELECT * FROM users WHERE username = '$username';") -> fetch_row();
+$user = $db -> query("SELECT * FROM users WHERE username = '$username';") -> fetch_array();
 
 if ($user["admin"] >= 1) {
     $data = json_decode(file_get_contents('php://input'));
-    $title = $data["title"];
+    $title = $data -> title;
     $link = urlencode($title);
-    $description = $data["description"];
-    $cover = $data["cover"];
-    $body = $data["body"];
+    $description = $data -> description;
+    $cover = $data -> cover;
+    $body = $data -> body;
     $author = $user["id"];
     if ($db -> query("INSERT INTO posts (
         link,
@@ -27,12 +27,12 @@ if ($user["admin"] >= 1) {
         body,
         author
     ) VALUES (
-        $link,
-        $title,
-        $description,
+        '$link',
+        '$title',
+        '$description',
         curdate(),
-        $cover,
-        $body,
+        '$cover',
+        '$body',
         $author
     );")) {
         echo '{"result":"success"}';

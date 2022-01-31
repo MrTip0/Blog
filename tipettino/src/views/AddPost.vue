@@ -3,16 +3,15 @@
         <uploader 
             v-if="upload"
             @uploaded="(value) => {
-                images.push({name: value.name, url: file.url})
-                upload.value = false
+                images.push(value.url)
+                upload = false
             }" />
         <ul class="list-group list-group-horizontal">
             <button class="list-group-item" 
                     v-for="image in images"
                     :key=image.name
-                    @click="navigator.clipboard.writeText(image.url)">
-                <img :src="image.url">
-                <p>{{image.name}}</p>
+                    @click="navigator.clipboard.writeText(image)">
+                <img :src="image">
             </button>
         </ul>
         <button class="btn btn-secondary p-3" @click="upload = !upload">Post image</button>
