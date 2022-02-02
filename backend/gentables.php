@@ -20,7 +20,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS posts (
     body TEXT,
     author INT NOT NULL,
     FOREIGN KEY (author) REFERENCES users(id),
-    PRIMARY KEY(id)
+    PRIMARY KEY(title, id)
 );';
 $db -> query($sql);
 ?>
