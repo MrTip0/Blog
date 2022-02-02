@@ -18,7 +18,7 @@ if ($user["admin"] >= 1) {
     $cover = $data -> cover;
     $body = $data -> body;
     $author = $user["id"];
-    if ($db -> query("INSERT INTO posts (
+    $quer = $db -> prepare("INSERT INTO posts (
         link,
         title,
         description,
@@ -28,13 +28,16 @@ if ($user["admin"] >= 1) {
         author
     ) VALUES (
         '$link',
-        '$title',
-        '$description',
+        ?,
+        ?,
         curdate(),
         '$cover',
-        '$body',
+        ?,
         $author
-    );")) {
+    );");
+    $quer -> bind_param("sss", $title, $description, $body);
+
+    if ($quer -> execute()) {
         echo '{"result":"success"}';
     } else {
         echo '{"result":"failure"}';

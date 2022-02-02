@@ -4,7 +4,8 @@ require '../lib/db.php';
 $db = getDB();
 
 $link = $_GET["link"];
-
+//! Il+primo+post not found
+//  TODO fix this
 $q = $db -> query("SELECT title, description, body FROM posts WHERE link = '$link';");
 
 if ($q -> num_rows != 1) {

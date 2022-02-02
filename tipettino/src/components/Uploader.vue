@@ -1,12 +1,8 @@
 <template>
-	<div class="container">
-		<div>
-			<label class="input-group">File
-				<input type="file" @change="handleFileUpload( $event )"/>
-			</label>
-			<button class="btn btn-secondary" v-on:click="submitFile()">Submit</button>
-		</div>
-	</div>
+   <div class="mb-3 input-group">
+      <input class="form-control" type="file" id="upImmagine" @change="handleFileUpload( $event )">
+      <button class="btn btn-secondary" v-on:click="submitFile()">Submit</button>
+   </div>
 </template>
 
 <script lang="ts">

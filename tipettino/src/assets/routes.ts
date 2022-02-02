@@ -6,6 +6,7 @@ const Post = ()=> import('../views/Post.vue')
 const Posts = ()=> import('../views/Posts.vue')
 const Index = ()=> import('../views/Index.vue')
 const AddPost = ()=> import('../views/AddPost.vue')
+const Register = ()=> import('../views/Register.vue')
 
 const routes = [
     { path: "/", component: Index },
@@ -15,6 +16,7 @@ const routes = [
     { path: "/posts", component: Posts },
     { path: "/login", component: Login },
     { path: "/addpost", component: AddPost },
+    { path: "/register", component: Register },
 ]
 
 export default createRouter({

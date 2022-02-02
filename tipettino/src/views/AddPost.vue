@@ -1,36 +1,38 @@
 <template>
-    <div class="d-flex flex-column justify-content-center p-5 vw-100">
-        <uploader 
-            v-if="upload"
-            @uploaded="(value: string) => {
-                images.push(value)
-                upload = false
-            }" />
-        <ul class="list-group list-group-horizontal">
-            <button class="list-group-item" 
-                    v-for="image in images"
-                    :key=image
-                    @click="navigator.clipboard.writeText(image)">
-                <img :src="image">
-            </button>
-        </ul>
-        <button class="btn btn-secondary p-3" @click="upload = !upload">Post image</button>
+    <div class="page-hero d-flex justify-content-center">
+        <div class="d-flex flex-column align-items-center w-100 ml-4 page">
+            <uploader 
+                v-if="upload"
+                @uploaded="(value: string) => {
+                    images.push(value)
+                    upload = false
+                }" />
+            <ul class="list-group list-group-horizontal">
+                <button class="list-group-item" 
+                        v-for="image in images"
+                        :key=image
+                        @click="navigator.clipboard.writeText(image)">
+                    <img :src="image">
+                </button>
+            </ul>
+            <button class="btn btn-secondary p-3" @click="upload = !upload">Post image</button>
 
-        <div class="input-group p-3">
-            <input class="form-control" type="text" v-model="title" placeholder="title">
+            <div class="input-group p-3">
+                <input class="form-control" type="text" v-model="title" placeholder="title">
+            </div>
+            <div class="input-group p-3">
+                <input class="form-control" type="text" v-model="description" placeholder="description">
+            </div>
+            <div class="input-group p-3">
+                <input class="form-control" type="text" v-model="cover" placeholder="cover url">
+            </div>
+            <div class="input-group p-3">
+                <textarea class="form-control" v-model="body" @input="updatePreview()"></textarea>
+            </div>
+            <button class="btn btn-secondary p-3" @click="sendPost()">Invia</button>
         </div>
-        <div class="input-group p-3">
-            <input class="form-control" type="text" v-model="description" placeholder="description">
-        </div>
-        <div class="input-group p-3">
-            <input class="form-control" type="text" v-model="cover" placeholder="cover url">
-        </div>
-        <div class="input-group p-3">
-            <textarea class="form-control" v-model="body" @input="updatePreview()"></textarea>
-        </div>
-        <button class="btn btn-secondary p-3" @click="sendPost()">Invia</button>
 
-        <div v-html="preview" />
+        <div v-html="preview" class="page"/>
     </div>
 </template>
 
@@ -110,3 +112,9 @@ export default defineComponent({
     }
 })
 </script>
+
+<style scoped>
+    .page {
+        max-width: 45vw;
+    }
+</style>
