@@ -40,9 +40,18 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="d-flex flex-column justify-content-center" v-if="title != ''">
-        <p class="h1">{{title}}</p>
-        <p class="h3">{{description}}</p>
-        <div v-html="rendered"></div>
+    <div class="d-flex flex-column align-items-center fixed-left" v-if="title != ''">
+        <div class="body bg-secondary rounded p-3">
+            <p class="h1 text-center">{{title}}</p>
+            <p class="h3 text-center">{{description}}</p>
+            <div v-html="rendered"></div>
+        </div>
     </div>
 </template>
+
+<style scoped>
+    .body {
+        width: 80vw;
+        max-width: 800px;
+    }
+</style>

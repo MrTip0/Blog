@@ -35,7 +35,7 @@ export default defineComponent({
             body: formData
          }).then(res => res.json())
          .then(res => {
-            this.$emit('uploaded', {url: res.url})
+            this.$emit('uploaded', res.url)
          })
       }
    }

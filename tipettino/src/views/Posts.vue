@@ -15,26 +15,49 @@
     </div>
 </template>
 
-<script setup lang="ts">
-    import { ref, reactive } from "vue";
+<script lang="ts">
+    import { defineComponent } from "vue";
     import { RouterLink } from "vue-router";
-    let posts = reactive<any[]>([])
-    let alertmex = ref("");
-    let showerr = ref(false);
 
-    fetch("/postapi/getposts.php")
-        .then(res => res.json())
-        .then(res => {
-            posts = res
-        })
-        .catch(err => {
-            alertmex.value = err
-            showerr.value = true
-        })
+export default defineComponent({
+    components: {
+        RouterLink
+    },
+    data() {
+        type post = {
+            cover: string,
+            link: string,
+            title: string,
+            description: string
+        }
+        let arrpost: post[] = []
+        return {
+            posts: arrpost,
+            alertmex: "",
+            showerr: false
+        }
+    },
+    beforeMount() {
+        fetch("/postapi/getposts.php")
+            .then(res => res.json())
+            .then(res => {
+                this.posts = res
+            })
+            .catch(err => {
+                this.alertmex = err
+                this.showerr = true
+            })
+    }
+})
 </script>
 
 <style scoped>
     .card {
-        width: 450px;
+        max-width: 450px;
+        max-height: 300px;
+    }
+    img {
+        max-width: 450px;
+        max-height: 300px;
     }
 </style>

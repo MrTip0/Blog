@@ -19,7 +19,7 @@
         </div>
       </div>
     </nav>
-    <router-view style="margin-top:64px"/>
+    <router-view class="routview"/>
   </div>
 </template>
 
@@ -30,3 +30,10 @@
   let posts = window.location.pathname == "/posts" ? defclass + " active" : defclass
   let projects = window.location.pathname == "/projects" ? defclass + " active" : defclass
 </script>
+
+<style scoped>
+  .routview {
+    margin-top: 64px;
+    margin: 64px;
+  }
+</style>
