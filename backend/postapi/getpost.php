@@ -3,15 +3,18 @@ require '../lib/db.php';
 
 $db = getDB();
 
-$link = $_GET["link"];
-//! Il+primo+post not found
-//  TODO fix this
-$q = $db -> query("SELECT title, description, body FROM posts WHERE link = '$link';");
+$title = $_GET["link"];
 
-if ($q -> num_rows != 1) {
+$q = $db -> prepare("SELECT title, description, body FROM posts WHERE title = ?;");
+$q -> bind_param("s", $title);
+$q -> execute();
+
+$res = $q -> get_result();
+
+if ($res -> num_rows != 1) {
     echo '{"error":"post not found"}';
 } else {
-    $row = $q -> fetch_array();
+    $row = $res -> fetch_array();
     echo json_encode(array(
         "title" => $row["title"],
         "description" => $row["description"],

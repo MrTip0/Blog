@@ -5,11 +5,11 @@ $db = getDB();
 
 $data = [];
 
-$res = $db -> query("SELECT link, title, description, cover FROM posts;");
+$res = $db -> query("SELECT title, description, cover FROM posts;");
 
 while($row = $res -> fetch_assoc()) {
     array_push($data, array(
-        "link" => $row["link"],
+        "link" => urlencode($row["title"]),
         "title" => $row["title"],
         "description" => $row["description"],
         "cover" => $row["cover"]

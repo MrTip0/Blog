@@ -23,7 +23,14 @@ if (!empty($token)) {
                 "username" => $username,
                 "name" => $name
             ), getprivate(), "RS256");
-            setcookie($cook);
+            setcookie(
+                name: "jwt",
+                value: $cook,
+                path:'/',
+                domain: $_SERVER['SERVER_NAME'],
+                secure: false,
+                httponly: true
+            );
         } else {
             echo 'Registration failed';
         }

@@ -13,13 +13,11 @@ $user = $db -> query("SELECT * FROM users WHERE username = '$username';") -> fet
 if ($user["admin"] >= 1) {
     $data = json_decode(file_get_contents('php://input'));
     $title = $data -> title;
-    $link = urlencode($title);
     $description = $data -> description;
     $cover = $data -> cover;
     $body = $data -> body;
     $author = $user["id"];
     $quer = $db -> prepare("INSERT INTO posts (
-        link,
         title,
         description,
         releasedate,
@@ -27,7 +25,6 @@ if ($user["admin"] >= 1) {
         body,
         author
     ) VALUES (
-        '$link',
         ?,
         ?,
         curdate(),

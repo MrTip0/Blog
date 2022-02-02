@@ -13,7 +13,6 @@ $db -> query($sql);
 
 $sql = 'CREATE TABLE IF NOT EXISTS posts (
     id INT NOT NULL AUTO_INCREMENT UNIQUE,
-    link varchar(100) UNIQUE,
     title VARCHAR(100),
     description TEXT,
     releasedate DATE,
@@ -21,7 +20,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS posts (
     body TEXT,
     author INT NOT NULL,
     FOREIGN KEY (author) REFERENCES users(id),
-    PRIMARY KEY(link, id)
+    PRIMARY KEY(id)
 );';
 $db -> query($sql);
 ?>
