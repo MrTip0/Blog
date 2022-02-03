@@ -28,7 +28,7 @@ if (!empty($token)) {
                 value: $cook,
                 path:'/',
                 domain: $_SERVER['SERVER_NAME'],
-                secure: false,
+                secure: true,
                 httponly: true
             );
         } else {

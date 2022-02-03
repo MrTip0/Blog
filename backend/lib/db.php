@@ -1,11 +1,14 @@
 <?php
 function getDB(): mysqli
 {
-    $servername = "localhost";
-    $username = "app";
+    require '../keys.php';
+    $data = getDBAccess();
+    $servername = $data["host"];
+    $username = $data["username"];
+    $database = $data["database"];
 
     // Create connection
-    $conn = new mysqli(hostname: $servername, username: $username, database: "applittle");
+    $conn = new mysqli(hostname: $servername, username: $username, database: $database);
     return $conn;
 }
 ?>

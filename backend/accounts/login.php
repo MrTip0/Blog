@@ -25,7 +25,7 @@ if (!filter_var($user, FILTER_VALIDATE_EMAIL)) {
             value: $token["body"],
             path:'/',
             domain: $_SERVER['SERVER_NAME'],
-            secure: false,
+            secure: true,
             httponly: true
         );
         echo json_encode(

@@ -31,7 +31,11 @@ export default defineComponent({
             body: formData
          }).then(res => res.json())
          .then(res => {
-            this.$emit('uploaded', res.url)
+            if (res.result == 'failure') {
+               alert(res.reason)
+            } else {
+               this.$emit('uploaded', res.url)
+            }
          })
       }
    }
