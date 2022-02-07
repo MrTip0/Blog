@@ -16,6 +16,7 @@ if (!empty($token)) {
         $q = $db -> prepare("INSERT INTO users(name, username, password, admin) VALUES (?, ?, ?, ?);");
         $q -> bind_param("sssi", $name, $username, $password, 0);
         $res = $q -> execute();
+        $db -> close();
         if($res) {
             echo 'Registration successful';
             require '../lib/auth.php';

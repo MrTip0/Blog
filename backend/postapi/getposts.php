@@ -15,6 +15,6 @@ while($row = $res -> fetch_assoc()) {
         "cover" => $row["cover"]
     ));
 }
-
+$db -> close();
 echo json_encode($data);
 ?>

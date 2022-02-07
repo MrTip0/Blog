@@ -29,6 +29,7 @@ function encode(string $username, string $password): array {
             "res" => "success"
         );
     }
+    $db -> close();
     return array(
         "res" => "failure",
         "body" => "wrong password"

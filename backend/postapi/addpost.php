@@ -39,6 +39,7 @@ if ($user["admin"] >= 1) {
     } else {
         echo '{"result":"failure"}';
     }
+    $db -> close();
 } else {
     echo '{"result": "failure"}';
 }

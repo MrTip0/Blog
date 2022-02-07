@@ -36,6 +36,7 @@ if(!empty($decoded -> username) && !empty($decoded -> name) && !empty($decoded -
     } else {
         echo '{"result":"failure","reason":"Username already registered"}';
     }
+    $db -> close();
 } else {
     http_response_code(400);
     echo '{"result":"failure","reason":"Bad Request"}';

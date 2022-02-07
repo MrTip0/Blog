@@ -21,4 +21,5 @@ if ($res -> num_rows != 1) {
         "body" => $row["body"]
     ));
 }
+$db -> close();
 ?>

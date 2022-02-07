@@ -23,4 +23,6 @@ $sql = 'CREATE TABLE IF NOT EXISTS posts (
     PRIMARY KEY(title, id)
 );';
 $db -> query($sql);
+
+$db -> close();
 ?>
