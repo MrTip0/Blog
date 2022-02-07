@@ -1,6 +1,5 @@
 <?php
 require '../vendor/autoload.php';
-require '../keys.php';
 use \Firebase\JWT\JWT;
 
 $decoded = json_decode(file_get_contents('php://input'));
