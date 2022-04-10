@@ -14,7 +14,7 @@ if(!empty($decoded -> username) && !empty($decoded -> name) && !empty($decoded -
             "password" => sha1($decoded -> password),
             "expire" => time() + (24 * 60 * 60)
         ), getprivate(), 'RS256');
-        $message = 'End registration to tipettblog: '. $_SERVER["SERVER_NAME"] .'/accounts/endregistration.php?token=' . $token;
+        $message = 'End registration to tipettblog: https://'. $_SERVER["SERVER_NAME"] .'/accounts/endregistration.php?token=' . $token;
         $resmail = mail($decoded -> username, 'Verifica account', $message);
         if ($resmail) {
             echo '{"result":"success","reason":"Email sent succesfully"}';
