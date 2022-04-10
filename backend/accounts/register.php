@@ -1,11 +1,11 @@
 <?php
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
 $decoded = json_decode(file_get_contents('php://input'));
 
 if(!empty($decoded -> username) && !empty($decoded -> name) && !empty($decoded -> password)) {
-    require_once '../lib/db.php';
+    require_once __DIR__ . '/../lib/db.php';
     $db = getDB();
     if ($db -> query("SELECT username FROM users WHERE username = '" . $decoded -> username . "';") -> num_rows == 0 ) {
         $token = JWT::encode(array(

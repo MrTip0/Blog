@@ -1,6 +1,6 @@
 <?php
-require '../lib/auth.php';
-require '../lib/db.php';
+require __DIR__ . '/../lib/auth.php';
+require __DIR__ . '/../lib/db.php';
 
 $token = decode($_COOKIE["jwt"]);
 

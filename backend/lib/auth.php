@@ -1,16 +1,16 @@
 <?php
-require "../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 use \Firebase\JWT\JWT;
-use \Firebase\JWT\KEY;
+use \Firebase\JWT\Key;
 
 function decode(string $token) {
-    require_once '../keys.php';
+    require_once __DIR__ . '/../keys.php';
     return JWT::decode($token, new Key(getpublic(), 'RS256'));
 }
 
 function encode(string $username, string $password): array {
-    require_once 'db.php';
-    require_once '../keys.php';
+    require_once __DIR__ . '/db.php';
+    require_once __DIR__ . '/../keys.php';
     $db = getDB();
     $hashedpass = sha1($password, false);
     $res = $db -> query("SELECT password, name from users WHERE username = '$username';");

@@ -1,0 +1,7 @@
+# # av:php5-engine
+AddHandler av-php8 .php
+
+# Redirect to HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

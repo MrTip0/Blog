@@ -1,7 +1,7 @@
 <?php
 function getDB(): mysqli
 {
-    require_once '../keys.php';
+    require_once __DIR__ . '/../keys.php';
     $data = getDBAccess();
     $servername = $data["host"];
     $username = $data["username"];

@@ -1,5 +1,5 @@
 <?php
-require '../lib/db.php';
+require __DIR__ . '/../lib/db.php';
 
 $db = getDB();
 

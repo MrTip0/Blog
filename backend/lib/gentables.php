@@ -1,5 +1,5 @@
 <?php 
-require './db.php';
+require __DIR__ . '/./db.php';
 $db = getDB();
 $sql = 'CREATE TABLE IF NOT EXISTS users (
     id INT NOT NULL AUTO_INCREMENT UNIQUE,

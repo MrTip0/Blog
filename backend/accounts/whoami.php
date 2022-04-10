@@ -5,7 +5,7 @@ $res = array(
 );
 
 if (!empty($_COOKIE["jwt"])) {
-    require '../lib/auth.php';
+    require __DIR__ . '/../lib/auth.php';
     $token = decode($_COOKIE["jwt"]);
     $res["logged"] = true;
     $res["user"] = $token -> username;
