@@ -26,7 +26,8 @@ if (!filter_var($user, FILTER_VALIDATE_EMAIL)) {
             path:'/',
             domain: $_SERVER['SERVER_NAME'],
             secure: true,
-            httponly: true
+            httponly: true,
+            expires_or_options: time() + 60 * 60 * 24 * 60 # Expires after 2 months
         );
         echo json_encode(
             array(
