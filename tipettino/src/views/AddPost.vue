@@ -12,7 +12,7 @@
                         v-for="image in images"
                         :key=image
                         @click="navigator.clipboard.writeText(image)">
-                    <img :src="image">
+                    <img :src="image" width="300">
                 </button>
             </ul>
             <button class="btn btn-secondary p-3" @click="upload = !upload">Post image</button>
@@ -31,16 +31,21 @@
             </div>
             <button class="btn btn-secondary p-3" @click="sendPost()">Invia</button>
         </div>
-
-        <div v-html="preview" class="page"/>
+        <div v-html="preview" class="page md"/>
     </div>
 </template>
 
 <script lang="ts">
-    import Uploader from "../components/Uploader.vue";
-    import mark from 'markdown-it';
-    import hljs from 'highlight.js';
-    import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+
+import Uploader from "../components/Uploader.vue";
+const markdown = import('markdown-it');
+
+import markdown_highlight from 'markdown-it-highlightjs';
+///@ts-ignore
+import markdown_attribution from 'markdown-it-attribution';
+///@ts-ignore
+import markdown_mark from 'markdown-it-mark';
 
 export default defineComponent({
     components: {
@@ -61,29 +66,19 @@ export default defineComponent({
         }
     },
     computed: {
-        md:() => mark({
-            html: true,
-            linkify: true,
-            typographer: true,
-            highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                    try {
-                        return hljs.highlight(str, { language: lang }).value;
-                    } catch (__) {}
-                }
-
-                return '';
-            }
-        })
-    },
-    created() {
-        fetch(`/postapi/getpost.php?link=${this.$route.params.link}`)
-            .then(res => res.json())
-            .then(res => {
-                this.title = res.title
-                this.description = res.description
-                this.rendered = this.md.render(res.body)
+        md: async() => {
+            let markc = await markdown;
+            let mark = markc.default({
+                html: true,
+                linkify: true,
+                typographer: true,
+                breaks: true
             })
+            mark.use(markdown_mark)
+            mark.use(markdown_highlight)
+            mark.use(markdown_attribution)
+            return mark
+        }
     },
     methods: {
         sendPost() {
@@ -106,15 +101,21 @@ export default defineComponent({
                 console.error(err)
             })
         },
-        updatePreview() {
-            this.preview = this.md.render(this.body)
+        async updatePreview() {
+            let md = await this.md;
+            this.preview = md.render(this.body)
         }
     }
 })
 </script>
 
-<style scoped>
+<style>
     .page {
         max-width: 45vw;
+    }
+    .md blockquote {
+        background-color: white;
+        padding: 1rem;
+        border-left: 10px solid #808080;
     }
 </style>

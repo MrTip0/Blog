@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [ -d build/ ]; then rm -rf build/; fi
+
 echo 'building frontend...'
 (cd tipettino && yarn 1> /dev/null && yarn build 1> /dev/null)
 cp -r "tipettino/dist/" "build/"
