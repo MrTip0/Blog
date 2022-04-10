@@ -7,7 +7,8 @@ if(isset($_COOKIE["jwt"])) {
    $user = decode($_COOKIE["jwt"]) -> username;
    $isadmin = $db -> query("SELECT admin FROM users WHERE username = '$user';") -> fetch_array()["admin"];
    if($isadmin == 1) {
-      $target_dir = "../uploaded_images/";
+      $target_dir = __DIR__ . "/../uploaded_images/";
+      if (!file_exists($target_dir)) { mkdir($target_dir); }
       $uploadErr = null;
       $imageFileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
 
