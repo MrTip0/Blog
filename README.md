@@ -32,7 +32,7 @@ function getDBAccess() {
 }
 ?>
 ```
-setup the database
+setup the database  
 sh build.sh
 
-once the server and the databases are online get the page /gentables.php
+once the server and the databases are online get the page /lib/gentables.php
