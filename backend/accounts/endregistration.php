@@ -1,6 +1,6 @@
 <?php
 require '../vendor/autoload.php';
-require '../keys.php';
+require_once '../keys.php';
 use \Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -13,8 +13,8 @@ if (!empty($token)) {
         $username = $decoded -> username;
         $name = $decoded -> name;
         $password = $decoded -> password;
-        $q = $db -> prepare("INSERT INTO users(name, username, password, admin) VALUES (?, ?, ?, ?);");
-        $q -> bind_param("sssi", $name, $username, $password, 0);
+        $q = $db -> prepare("INSERT INTO users(name, username, password, admin) VALUES (?, ?, ?, 0);");
+        $q -> bind_param("sss", $name, $username, $password);
         $res = $q -> execute();
         $db -> close();
         if($res) {

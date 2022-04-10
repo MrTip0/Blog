@@ -1,5 +1,5 @@
 <?php 
-require '../lib/auth.php';
+require_once '../lib/auth.php';
 $json = json_decode(file_get_contents('php://input'), true);
 $user = $json["user"];
 $pass = $json["pass"];

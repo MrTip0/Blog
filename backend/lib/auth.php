@@ -4,13 +4,13 @@ use \Firebase\JWT\JWT;
 use \Firebase\JWT\KEY;
 
 function decode(string $token) {
-    require '../keys.php';
+    require_once '../keys.php';
     return JWT::decode($token, new Key(getpublic(), 'RS256'));
 }
 
 function encode(string $username, string $password): array {
-    require 'db.php';
-    require '../keys.php';
+    require_once 'db.php';
+    require_once '../keys.php';
     $db = getDB();
     $hashedpass = sha1($password, false);
     $res = $db -> query("SELECT password, name from users WHERE username = '$username';");
